@@ -1,0 +1,174 @@
+{% extends "Shop/base.html"%} {% load static %} {% block header %}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% static 'Shop/checkout.css' %}" />
+<title>CHECKOUT</title>
+{% endblock %} {% block content %}
+<div class="row">
+  <div class="col-lg-6">
+    <div class="box form-wrap">
+      <form id="checkout-form">
+        <div class="info">
+          <fieldset>
+            <legend><strong> Personal information:</strong></legend>
+            <div class="form-field">
+              <label for="name">Name: </label>
+              <input
+                required
+                class="form-control"
+                type="text"
+                name="name"
+                id="name"
+                placeholder="Jan Kowalski" />
+            </div>
+            <div class="form-field">
+              <label for="email">Email: </label>
+              <input
+                required
+                class="form-control"
+                type="email"
+                name="email"
+                id="email"
+                placeholder="jankowalski@mail.com" />
+            </div>
+            <div class="form-field">
+              <label for="phone">Phone number: </label>
+              <input
+                required
+                class="form-control"
+                type="tel"
+                name="phone"
+                id="phone"
+                pattern="[0-9]{9}"
+                placeholder="123456789" />
+            </div>
+          </fieldset>
+        </div>
+        <div class="info">
+          <fieldset>
+            <legend><strong>Shipping information:</strong></legend>
+            <div class="form-field">
+              <label for="country">Country: </label>
+              <select name="country" id="country" class="form-select form-select-md">
+                  <option value="pol" selected="selected">Poland</option>
+                  <option value="ger">Germany</option>
+                  <option value="us">United States</option>
+              </select>
+            </div>
+            <div class="form-field">
+              <label for="city">City: </label>
+              <input
+                required
+                class="form-control"
+                type="text"
+                name="city"
+                id="city"
+                placeholder="Warszawa" />
+            </div>
+            <div class="form-field">
+              <label for="address">Address: </label>
+              <input
+                required
+                class="form-control"
+                type="text"
+                name="address"
+                id="address"
+                placeholder="Koszykowa 1" />
+            </div>
+            <div class="form-field">
+              <label for="zip">ZIP code: </label>
+              <input
+                required
+                class="form-control"
+                type="text"
+                name="zip"
+                id="zip"
+                placeholder="07410" />
+            </div>
+          </fieldset>
+        </div>
+        <input type="submit" id="save-shipping" class="btn btn-outline-warning" value="Save shipping information" />
+      </form>
+    </div>
+  </div>
+  <div class="col-lg-6">
+    <div class="box">
+      <div class="back-but">
+        <a class="btn btn-outline-secondary add-btn" href="/cart"
+          >&#x2190; Back to Cart</a
+        >
+      </div>
+      <div class="summary">
+        <h3>Order summary</h3>
+      </div>
+      {% for item in items %}
+      <div class="cart-row">
+        <div><img class="miniimg" src="{{item.saber.imageURL}}" /></div>
+        <div>{{item.saber.name}}</div>
+        <div>${{item.saber.price|floatformat:2}}</div>
+      </div>
+      {%endfor%}
+      <table class="table">
+        <tr>
+          <th>
+            <h5 class="total">
+              Total: <strong>${{order.get_cart_total|floatformat:2}}</strong>
+            </h5>
+          </th>
+          <th>
+            <a class="btn btn-success hidden" id="pay">Procced to payment</a>
+          </th>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+
+  var form = document.getElementById('checkout-form')
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    document.getElementById('pay').classList.remove('hidden')
+  })
+
+  document.getElementById('pay').addEventListener('click', function(){
+    console.log('Payment clicked');
+    processOrder();
+  })
+  
+  function processOrder() {
+    console.log('processing order');
+    var shippingInfo ={
+      'country':form.country.value,
+      'city':form.city.value,
+      'address':form.address.value,
+      'zip':form.zip.value
+    }
+
+    var url = '/place_order/'
+
+    fetch(url, {
+        method: 'POST',
+        headers:{
+            'Content-Type':'application/json',
+            'X-CSRFToken': csrftoken,
+        },
+        body:JSON.stringify({
+           'shippingInfo': shippingInfo
+        })
+    })
+        .then((response) =>{
+            return response.json()
+        })
+
+        .then((data) =>{
+            console.log('data:', data);
+            alert('Transaction completed successfully');
+            window.location.href = "/"
+        })
+  }
+
+</script>
+{% endblock %}

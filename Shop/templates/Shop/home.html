@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'Shop/home.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" />
+    <link rel="icon" href="{% static 'Shop/images/icon.png' %}" />
+    <title>ForceForge</title>
+  </head>
+  <body>
+    <div class="flexbox">
+      <div class="header">
+        <div class="logo">
+          <img
+            class="img-start"
+            src="{% static 'Shop/images/Logo.png' %}" /><img
+            class="img-hover"
+            src="{% static 'Shop/images/logoafter.png' %}" />
+        </div>
+        <!-- <div class="item">
+          <img src="{% static 'Shop/images/sale.png' %}" /> SALE
+        </div>
+        <div class="item">
+          <img src="{% static 'Shop/images/faq.png' %}" />FAQ
+        </div>
+        <div class="item">
+          <img src="{% static 'Shop/images/contact.png' %}" /> CONTACT
+        </div> -->
+      </div>
+      <a href="/dark" class="fill-div">
+        <div class="img-container">
+          <div class="img img-dark">
+            <h1>SHOP DARK SIDE</h1>
+          </div>
+        </div>
+      </a>
+      <a href="/light" class="fill-div">
+        <div class="img-container">
+          <div class="img img-light">
+            <h1>SHOP LIGHT SIDE</h1>
+          </div>
+        </div>
+      </a>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,14 @@
+.box{
+    flex-direction: column;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+}
+
+.btn{
+    margin: 10%;
+}
+
+.sign-login{
+    margin: 2%;
+}

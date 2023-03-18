@@ -1,0 +1,20 @@
+{% extends "Shop/base.html"%} {% load static %} {% block header %}
+<link rel="stylesheet" type="text/css" href="{% static 'Shop/dark.css' %}" />
+<title>LIGHT SIDE SHOP</title>
+{% endblock %} {% block content %}
+<div class="row justify-content-around">
+    {% for saber in sabers %}
+    <div class="col-lg-4">
+        <img class="thumbnail" src="{{saber.image.url}}">
+        <div class="box saber">
+            <h6>{{saber.name}}</h6>
+            <hr>
+            <button data-saber="{{saber.id}}" data-action="add" class="btn btn-success update-cart">Add to cart</button>
+            <a class="btn btn-outline-secondary add-btn" href="/">View</a>
+            <h4 class="price">${{saber.price|floatformat:2}}</h4>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<script type="text/javascript" src="{% static 'Shop/cart.js' %}"></script>
+{% endblock %}

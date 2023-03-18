@@ -1,0 +1,133 @@
+body{
+    margin: 0;
+    padding: 0;
+    min-width: 140px;
+    font-family: "Roboto", sans-serif;
+    color: rgb(200, 200, 200);
+}
+
+/* Menu */
+
+.header{
+    position: fixed;
+    z-index: 1;
+    flex-direction: column;
+    display: flex;
+    justify-content:start;
+    align-items: center;
+    left: 45vw;
+    width: 10vw;
+    height: 100%;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
+    font-weight: 700;
+}
+
+/* .item{
+    padding: 1.4vw;
+    font-size: 3.5vw;
+    display: flex;
+    align-items: center;
+    transition: all ease 0.3s;
+}
+
+.item:hover{
+    transform: scale(1.1);
+    color: white;
+    cursor: pointer;
+}
+
+.item img{
+    height: 1em;
+    width: auto;
+} */
+
+.logo{
+    padding-top: 10vh;
+    transition: all ease 0.4s;
+}
+
+.logo:hover{
+    transform: scale(1.5);
+    cursor: pointer;
+}
+
+.logo img{
+    transition: all ease 0.4s;
+    height: 5em;
+    width: auto;
+}
+
+.logo img.img-start{
+    position: absolute; 
+}
+
+.logo img.img-hover{
+    opacity: 0;
+}
+
+.logo:hover img.img-start{
+    opacity: 0;    
+}
+
+.logo:hover img.img-hover{
+    opacity: 1;    
+}
+
+/* Two panels with hover effects */
+
+.flexbox{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+}
+
+.img-container{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    text-decoration: none;
+}
+
+.fill-div {
+    display: block;
+    height: 100%;
+    width: 100%;
+    text-decoration: none;
+    color: rgb(200, 200, 200);
+}
+
+.img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-position: center center;
+    box-shadow: 0 0 40vw 1.4vw rgba(0, 0, 0, 1) inset;
+    transition: all ease 0.4s;
+    font-size: 2vw;
+    overflow: hidden;
+    cursor:pointer;
+}
+
+.img:hover{
+    transform: scale(1.1);
+    box-shadow: 0 0 2vw 1.4vw rgba(0, 0, 0, 0.75) inset;
+}
+
+.img-dark{
+    background-image: url(images/sith.jpg);
+}
+
+.img-light{
+    background-image: url(images/jedi.jpg);
+}
+
+h1{
+    margin: 20%;
+    text-align: center;
+    text-shadow: 0 0 20px rgba(0, 0, 0, 1);
+}

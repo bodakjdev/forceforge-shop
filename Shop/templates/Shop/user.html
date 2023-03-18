@@ -1,0 +1,17 @@
+{% extends "Shop/base.html"%} {% load static %} {% block header %}
+<link rel="stylesheet" type="text/css" href="{% static 'Shop/user.css' %}" />
+<title>USER CENTER</title>
+{% endblock %} {% block content %}
+<div class="row justify-content-around">
+  <div class="col-lg-4">
+    <div class="box">
+      <a class="btn btn-outline-warning add-btn" href="/register"
+        >Register</a
+      ><a class="btn btn-outline-warning add-btn" href="/login"
+        >Login</a
+      >
+    </div>
+  </div>
+</div>
+<script type="text/javascript" src="{% static 'Shop/cart.js' %}"></script>
+{% endblock %}

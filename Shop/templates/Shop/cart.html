@@ -1,0 +1,38 @@
+{% extends "Shop/base.html"%} {% load static %} {% block header %}
+<link rel="stylesheet" type="text/css" href="{% static 'Shop/cart.css' %}" />
+<title>CART</title>
+{% endblock %} {% block content %}
+<div class="row">
+  <div class="col-lg-12">
+    <div class="box">
+      <a class="btn btn-outline-secondary add-btn" href="/dark">&#x2190; Back to shopping</a>
+      <br /><br />
+      <table class="table">
+        <tr>
+          <th>
+            <h5  class="total">Total: <strong>${{order.get_cart_total|floatformat:2}}</strong></h5>
+          </th>
+          <th><a class="btn btn-success btn-checkout" href="/checkout">Checkout </a></th>
+        </tr>
+      </table>
+    </div>
+    <div class="box">
+        <div class="cart-row">
+            <div><strong>Item</strong></div>
+            <div><strong>Name</strong></div>
+            <div><strong>Price</strong></div>
+            <div><strong>Action</strong></div>
+        </div>
+        {% for item in items %}
+        <div class="cart-row">
+            <div><img class="miniimg" src="{{item.saber.imageURL}}"></div>
+            <div>{{item.saber.name}}</div>
+            <div>${{item.saber.price|floatformat:2}}</div>
+            <div><button data-saber="{{item.saber.id}}" data-action="remove" class="btn btn-outline-danger update-cart">Remove</button></div>
+        </div>
+        {%endfor%}
+    </div>
+  </div>
+</div>
+<script type="text/javascript" src="{% static 'Shop/cart.js' %}"></script>
+{% endblock %}
